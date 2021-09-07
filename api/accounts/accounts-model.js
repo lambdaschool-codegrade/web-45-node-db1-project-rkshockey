@@ -5,11 +5,11 @@ const getAll = () => {
 }
 
 const getById = id => {
-  return db('accounts').where('id', id).first()
+  return db('accounts').where({ id: id }).first()
 }
 
 const create = async account => {
-  const {id} = await db('accounts').insert(account)
+  const [id] = await db('accounts').insert(account)
   const newAccount = await getById(id)
   return newAccount
 }

@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 })
 
-router.get('/:id', checkAccountId, (req, res, next) => {
+router.get('/:id', checkAccountId, (req, res) => {
   res.status(200).json(req.account);
 })
 
@@ -18,7 +18,7 @@ router.post('/', checkAccountPayload, checkAccountNameUnique, (req, res, next) =
     .catch(next);
 })
 
-router.put('/:id', checkAccountId, checkAccountPayload, checkAccountNameUnique, (req, res, next) => {
+router.put('/:id', checkAccountId, checkAccountPayload, (req, res, next) => {
   Accounts.updateById(req.params.id, req.body)
     .then(account => res.json(account))
     .catch(next);
