@@ -13,8 +13,8 @@ router.get('/:id', checkAccountId, (req, res) => {
 })
 
 router.post('/', checkAccountPayload, checkAccountNameUnique, (req, res, next) => {
-  Accounts.create(req.body)
-    .then(account => res.json(account))
+  Accounts.create({ name: req.body.name.trim(), budget: req.body.budget})
+    .then(account => res.status(201).json(account))
     .catch(next);
 })
 

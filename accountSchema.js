@@ -2,6 +2,7 @@ const yup = require('yup')
 
 const accountSchema = yup.object().shape({
     name: yup.string("name of account must be a string")
+        .trim()
         .required("name and budget are required")
         .min(3, "name of account must be between 3 and 100")
         .max(100, "name of account must be between 3 and 100"),

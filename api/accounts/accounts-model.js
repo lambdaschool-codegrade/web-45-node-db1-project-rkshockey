@@ -14,12 +14,15 @@ const create = async account => {
   return newAccount
 }
 
-const updateById = (id, account) => {
-  return 'updateById wired'
+const updateById = async (id, account) => {
+  await db('accounts').where('id', id).update(account)
+  return getById(id)
 }
 
-const deleteById = id => {
-  return 'deleteById wired'
+const deleteById = async id => {
+  const account = await getById(id)
+  await db('accounts').where('id', id).delete()
+  return account
 }
 
 module.exports = {

@@ -15,7 +15,7 @@ exports.checkAccountPayload = (req, res, next) => {
 
 exports.checkAccountNameUnique = async (req, res, next) => {
   const accounts = await getAll()
-  if (accounts.find(account => account.name === req.body.name)){
+  if (accounts.find(account => account.name === req.body.name.trim())){
     next({ status: 400, message: "that name is taken" });
   }else{
     next()
